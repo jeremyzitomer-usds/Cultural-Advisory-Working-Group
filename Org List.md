@@ -9,4 +9,4 @@ Create a robust and diverse list of organizations-- ideally at least 2-3 organiz
 | 2 | Latinx/Low-SES/Immigrant | CASA | https://wearecasa.org/ | DMV: Maryland and PA | 
 | 3 | Immmigrant Rights | CAIR: Capital Area Immigrants' Rights Coalition | https://www.caircoalition.org/ | DMV: Washington, DC
 | 4 | Asylum amd Refugee | AsylumWorks | https://asylumworks.org/ | DMV: Washington, DC | Jess Weeden and Anissa Pérez | Joan Hodges-Wu, Founder & Executive Director
-| 5 | Community Health Center | Mary's Center | https://www.maryscenter.org/ | DMV: Washington, DC & Maryland |  | 
+| 5 | Community Health Center/Clinic | Mary's Center | https://www.maryscenter.org/ | DMV: Washington, DC & Maryland |  | 
