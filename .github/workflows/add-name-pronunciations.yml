@@ -16,7 +16,7 @@ jobs:
             if [[ $n =~ (- ([A-Za-z ]+): (.*)) ]]; then
                 original="${BASH_REMATCH[2]}"
                 replacement="${BASH_REMATCH[3]}"
-                replacement=$(echo "${replacement}" | sed -e "s/\[[^\[\]*\](https:\/\/[^\)]*)//g")
+                replacement=$(echo "${replacement}" | sed -e "s/\s*\(\[[^\[\]*\]\)\?(https:\/\/[^\)]*)//g")
                 echo "${replacement}"
                 pronunciation_map["${original}"]="${replacement}"
             fi
