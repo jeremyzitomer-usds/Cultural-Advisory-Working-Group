@@ -25,7 +25,7 @@ jobs:
           done < name_pronunciations.md
           for name in "${!pronunciation_map[@]}"; do 
             KUDO=$(<test_names.txt)
-            KUDO=`"${KUDO}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g"`
+            KUDO=$(echo "${KUDO}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
           echo $KUDO
           # while read n; do
