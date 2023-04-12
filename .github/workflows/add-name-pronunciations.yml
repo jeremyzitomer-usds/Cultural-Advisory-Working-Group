@@ -23,7 +23,7 @@ jobs:
                 echo ${pronunciation_map["${BASH_REMATCH[2]}"]}
             fi
           done < name_pronunciations.md
-          KUDO=${{issue.title}}
+          KUDO=${{github.event.issue.title}}
           for name in "${!pronunciation_map[@]}"; do 
             KUDO=$(echo "${KUDO}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
