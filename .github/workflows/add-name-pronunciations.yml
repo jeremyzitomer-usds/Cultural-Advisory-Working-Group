@@ -15,7 +15,7 @@ jobs:
           REGEXP="^- ([-' A-Za-zÀ-ÿ]+): (.*)$"
           while read n; do
             echo "$n"
-            if [[ "$n" =~ $REGEXP ]]; then
+            if [[ $n =~ $REGEXP ]]; then
                 pronunciation_map["${BASH_REMATCH[1]}"]="${BASH_REMATCH[2]}"
                 echo pronuncation_map["${BASH_REMATCH[1]}"]
             fi
