@@ -36,4 +36,4 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/jeremyzitomer-usds/Cultural-Advisory-Working-Group/issues/${{github.event.issue.number}} \
-            -d "{\"title\":\"${kudo}\",\"body\":\"github.event.issue.body\",\"state\":\"open\"}"
+            -d "{\"title\":\"${kudo}\",\"body\":\"${{github.event.issue.body}}\",\"state\":\"open\"}"
