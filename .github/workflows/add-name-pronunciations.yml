@@ -23,8 +23,8 @@ jobs:
                 echo ${pronunciation_map["${BASH_REMATCH[2]}"]}
             fi
           done < name_pronunciations.md
+          KUDO=$(<test_names.txt)
           for name in "${!pronunciation_map[@]}"; do 
-            KUDO=$(<test_names.txt)
             KUDO=$(echo "${KUDO}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
           echo $KUDO
