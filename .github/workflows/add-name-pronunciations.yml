@@ -1,0 +1,20 @@
+name: add-name-pronunciations
+on:
+  push
+  # issues:
+  #   types:
+  #     - opened
+jobs:
+  grab-name-pronunciations:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          declare -A pronunciation_map
+          REGEXP="^([-'A-Za-zÀ-ÿ]+): (.*)$"
+          while read n; do
+            if [[ n =~ $REGEXP ]]; then
+                pronunciation_map["${BASH_REMATCH[1]}"]="${BASH_REMATCH[2]}"
+                cat pronuncation_map["${BASH_REMATCH[1]}"] > ./test_output.txt
+            fi
+          done < Cultural-Advisory-Working-Group/name_pronunciations.md
