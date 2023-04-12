@@ -17,4 +17,4 @@ jobs:
                 pronunciation_map["${BASH_REMATCH[1]}"]="${BASH_REMATCH[2]}"
                 cat pronuncation_map["${BASH_REMATCH[1]}"] > ./test_output.txt
             fi
-          done < Cultural-Advisory-Working-Group/name_pronunciations.md
+          done < ./name_pronunciations.md
