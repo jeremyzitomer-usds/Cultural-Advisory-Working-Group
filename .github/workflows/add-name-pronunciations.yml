@@ -8,6 +8,7 @@ jobs:
   grab-name-pronunciations:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - shell: bash
         run: |
           declare -A pronunciation_map
@@ -15,6 +16,6 @@ jobs:
           while read n; do
             if [[ n =~ $REGEXP ]]; then
                 pronunciation_map["${BASH_REMATCH[1]}"]="${BASH_REMATCH[2]}"
-                cat pronuncation_map["${BASH_REMATCH[1]}"] > ./test_output.txt
+                cat pronuncation_map["${BASH_REMATCH[1]}"] > ./Cultural-Advisory-Working-Group/test_output.txt
             fi
-          done < ./name_pronunciations.md
+          done < ./Cultural-Advisory-Working-Group/name_pronunciations.md
