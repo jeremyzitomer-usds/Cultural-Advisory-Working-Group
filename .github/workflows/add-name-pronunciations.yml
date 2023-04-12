@@ -13,7 +13,7 @@ jobs:
         run: |
           declare -A pronunciation_map
           while read n; do
-            if [[ $n =~ (- ([A-Za-z -]+): (.*)) ]]; then
+            if [[ $n =~ (- ([\p{L} -]+): (.*)) ]]; then
                 original="${BASH_REMATCH[2]}"
                 replacement="${BASH_REMATCH[3]}"
                 replacement=$(echo "${replacement}" | sed -e "s/\s*\(\[[^\[\]*\]\)\?(https:\/\/[^\)]*)//g")
