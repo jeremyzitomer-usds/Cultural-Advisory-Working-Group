@@ -27,7 +27,7 @@ jobs:
           for name in "${!pronunciation_map[@]}"; do 
             KUDO=$(echo "${KUDO}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
-          echo $KUDO
+          echo "${KUDO}"
           # while read n; do
           #  echo "$n"
           #  if [[ 
