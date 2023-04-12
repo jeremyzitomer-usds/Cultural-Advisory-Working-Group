@@ -14,7 +14,7 @@ jobs:
           declare -A pronunciation_map
           while read n; do
             echo "$n"
-            if [[ "$n" =~ "(.*)" ]]; then
+            if [[ "$n" =~ (.*) ]]; then
                 #             if [[ "$n" =~ "- ([A-Za-zÀ-ÿ ]+): (.*)" ]]; then
                 echo "what"
                 pronunciation_map["${BASH_REMATCH[1]}"]="${BASH_REMATCH[2]}"
