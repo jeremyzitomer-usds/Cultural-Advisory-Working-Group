@@ -20,7 +20,7 @@ jobs:
           kudo="${{github.event.issue.title}}"
           for name in "${!pronunciation_map[@]}"; do 
             if [[ "${kudo}" == *"${name}"* ]]; then
-              echo 'Found the name of a USDSer: "${name}". Replacing that with "${name} \(${pronunciation_map["${name}"]}\)'
+              echo "Found the name of a USDSer: \"${name}\". Replacing that with \"${name} \(${pronunciation_map[\"${name}\"]}\)\"
             fi
             kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*(\([^\(\)]\)*)\)\?/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
