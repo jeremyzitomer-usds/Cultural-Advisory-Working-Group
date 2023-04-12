@@ -15,21 +15,14 @@ jobs:
         run: |
           declare -A pronunciation_map
           while read n; do
-            echo "$n"
             if [[ $n =~ (- ([A-Za-z ]+): (.*)) ]]; then
-                echo "${BASH_REMATCH[2]}"
-                echo "${BASH_REMATCH[3]}"
-                echo "pronunciation_map+=( [\"${BASH_REMATCH[2]}\"]=\"${BASH_REMATCH[3]}\" )"
-                # pronunciation_map+=([ "${BASH_REMATCH[2]}" ]="${BASH_REMATCH[3]}" )
                 pronunciation_map["${BASH_REMATCH[2]}"]="${BASH_REMATCH[3]}"
-                echo ${pronunciation_map["${BASH_REMATCH[2]}"]}
             fi
           done < name_pronunciations.md
           kudo="${{github.event.issue.title}}"
           for name in "${!pronunciation_map[@]}"; do 
             kudo=$(echo "${kudo}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
-          echo "${kudo}"
           curl -L \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
