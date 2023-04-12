@@ -23,11 +23,15 @@ jobs:
                 echo ${pronunciation_map["${BASH_REMATCH[2]}"]}
             fi
           done < name_pronunciations.md
-          KUDO="${{github.event.issue.title}}"
+          kudo="${{github.event.issue.title}}"
           for name in "${!pronunciation_map[@]}"; do 
-            KUDO=$(echo "${KUDO}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
+            kudo=$(echo "${kudo}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
-          echo "${KUDO}"
-          # while read n; do
-          #  echo "$n"
-          #  if [[ 
+          echo "${kudo}"
+          curl -L \
+            -X PATCH \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer <YOUR-TOKEN>"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/jeremyzitomer-usds/Cultural-Advisory-Working-Group/issues/${{github.event.issue.number}} \
+            -d '{"title":"${kudo}","body":"${{github.event.issue.body}}","state":"open"}'
