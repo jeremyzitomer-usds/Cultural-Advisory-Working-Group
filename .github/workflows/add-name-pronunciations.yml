@@ -1,9 +1,9 @@
 name: add-name-pronunciations
 on:
-  push
-  # issues:
-  #   types:
-  #     - opened
+  # push
+  issues:
+    types:
+      - opened
 jobs:
   grab-name-pronunciations:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
                 echo ${pronunciation_map["${BASH_REMATCH[2]}"]}
             fi
           done < name_pronunciations.md
-          KUDO=$(<test_names.txt)
+          KUDO=${issue.title}
           for name in "${!pronunciation_map[@]}"; do 
             KUDO=$(echo "${KUDO}" | sed -e "s/${name}/${name} \(${pronunciation_map["${name}"]}\)/g")
           done
