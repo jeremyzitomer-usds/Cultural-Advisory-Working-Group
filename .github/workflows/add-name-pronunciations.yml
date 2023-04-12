@@ -12,7 +12,7 @@ jobs:
       - shell: bash
         run: |
           declare -A pronunciation_map
-          REGEXP="^- ([-'A-Za-zÀ-ÿ]+): (.*)$"
+          REGEXP="^- ([-' A-Za-zÀ-ÿ]+): (.*)$"
           while read n; do
             echo "$n"
             if [[ "$n" =~ $REGEXP ]]; then
