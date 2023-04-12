@@ -17,6 +17,7 @@ jobs:
             if [[ $n =~ (- ([A-Za-z ]+): (.*)) ]]; then
                 echo "${BASH_REMATCH[2]}"
                 echo "${BASH_REMATCH[3]}"
+                echo "pronunciation_map+=( [\"${BASH_REMATCH[2]}\"]=\"${BASH_REMATCH[3]}\" )"
                 pronunciation_map+=( ["${BASH_REMATCH[2]}"]="${BASH_REMATCH[3]}" )
                 # pronunciation_map["${BASH_REMATCH[2]}"]="${BASH_REMATCH[3]}"
                 echo ${pronuncation_map["${BASH_REMATCH[2]}"]}
