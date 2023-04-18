@@ -32,7 +32,7 @@ jobs:
           done < name_pronunciations.md
           echo "old kudo="
           cat ${{ github.event_path }}
-          # if [[ "${{ github.event.issue.title }}" == *"\\\""* ]]; then
+          # if [[ ${{ github.event.issue.title }} == *"\\\""* ]]; then
           #  echo "ha
           # fi
           test=$(sed -e 's/\"/WOW/g' <<< "${{github.event.issue.title}}")
