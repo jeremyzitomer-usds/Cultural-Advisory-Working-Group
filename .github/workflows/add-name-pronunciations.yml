@@ -33,7 +33,7 @@ jobs:
           echo "${{github.event.issue.title}}"
           echo "(${{github.event.issue.title}})"
           printf "%q" "${{github.event.issue.title}}"
-          test=$(sed -e 's/"/WOW/g' <<< ${{github.event.issue.title}})
+          test=$(sed -e 's/"/WOW/g' <<< '${{github.event.issue.title}}')
           echo "${test}" 
           kudo="${{ github.event.issue.title }}"
           for name in "${!pronunciation_map[@]}"; do 
