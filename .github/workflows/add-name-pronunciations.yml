@@ -26,13 +26,13 @@ jobs:
                 # Ignores any embedded links in a name pronunciation
                 replacement=$(echo "${replacement}" | sed -e "s/\s*\(\[[^\[\]*\]\)\?(https:\/\/[^\)]*)//g")
                 # 
-                replacement=$(echo "${replacement}" | sed -e 's/"/\\\\\"/g')
+                replacement=$(echo "${replacement}" | sed -e "s/"/\\\\\\\\\"/g")
                 pronunciation_map["${original}"]="${replacement}"
             fi
           done < name_pronunciations.md
           echo "old kudo="
           echo "${{github.event.issue.title}}"
-          test=$(echo "${{github.event.issue.title}}" | sed -e "s/\"/WOW/g")
+          test=$(echo "${{github.event.issue.title}}" | sed -e 's/"/WOW/g')
           echo "${test}"
           kudo="${{github.event.issue.title}}"
           for name in "${!pronunciation_map[@]}"; do 
