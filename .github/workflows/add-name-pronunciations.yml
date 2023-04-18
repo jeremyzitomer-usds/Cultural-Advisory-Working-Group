@@ -40,6 +40,7 @@ jobs:
             fi
           done
           kudo=$(echo "${kudo}" | sed -e "s/\"/\\\\\\\\\"/g")
+          echo "${kudo}"
           # Sends the HTTPS request to replace the Kudo title with the edited title containing pronunciations
           curl -L \
             -X PATCH \
