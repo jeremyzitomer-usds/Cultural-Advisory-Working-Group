@@ -30,7 +30,7 @@ jobs:
                 pronunciation_map["${original}"]="${replacement}"
             fi
           done < name_pronunciations.md
-          kudo='${{ github.event.issue.title }}'
+          kudo=$(echo '${{ github.event.issue.title }}' | sed -e "s/\"/\\\"/g")
           for name in "${!pronunciation_map[@]}"; do 
             # For each USDSer name in the Kudo message, appends the pronunciation after that name, in parentheses
             if [[ "${kudo}" == *"${name}"* ]]; then
