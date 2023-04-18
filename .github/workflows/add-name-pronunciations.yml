@@ -30,6 +30,7 @@ jobs:
                 pronunciation_map["${original}"]="${replacement}"
             fi
           done < name_pronunciations.md
+          echo "${{github.event.issue.title}}"
           if [[ ${{ github.event.issue.title }} == *"\\\""* ]]; then
            echo "ha
           fi
