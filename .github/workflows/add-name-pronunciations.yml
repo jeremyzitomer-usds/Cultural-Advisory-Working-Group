@@ -25,12 +25,10 @@ jobs:
                 replacement="${BASH_REMATCH[3]}"
                 # Ignores any embedded links in a name pronunciation
                 replacement=$(echo "${replacement}" | sed -e "s/\s*\(\[[^\[\]*\]\)\?(https:\/\/[^\)]*)//g")
-                # 
-                replacement=$(echo "${replacement}" | sed -e "s/\"/\\\\\\\\\"/g")
                 pronunciation_map["${original}"]="${replacement}"
             fi
           done < name_pronunciations.md
-          kudo=$(echo '${{ github.event.issue.title }}' | sed -e "s/\"/\\\"/g")
+          kudo='${{ github.event.issue.title }}'
           for name in "${!pronunciation_map[@]}"; do 
             # For each USDSer name in the Kudo message, appends the pronunciation after that name, in parentheses
             if [[ "${kudo}" == *"${name}"* ]]; then
@@ -41,7 +39,7 @@ jobs:
               kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*(\([^\(\)]\)*)\)\?/${name} \(${pronunciation_map["${name}"]}\)/g")
             fi
           done
-          echo ${kudo}
+          kudo=$(echo "${kudo}" | sed -e "s/\"/\\\\\\\\\"/g")
           # Sends the HTTPS request to replace the Kudo title with the edited title containing pronunciations
           curl -L \
             -X PATCH \
