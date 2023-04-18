@@ -26,7 +26,7 @@ jobs:
                 # Ignores any embedded links in a name pronunciation
                 replacement=$(echo "${replacement}" | sed -e "s/\s*\(\[[^\[\]*\]\)\?(https:\/\/[^\)]*)//g")
                 # 
-                replacement=$(echo "${replacement}" | sed -e "s/\"/\\\\\\\\\"/g")
+                replacement=$(echo "${replacement}" | sed -e 's/"/\\\\\"/g')
                 pronunciation_map["${original}"]="${replacement}"
             fi
           done < name_pronunciations.md
