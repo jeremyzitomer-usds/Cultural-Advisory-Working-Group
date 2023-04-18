@@ -31,6 +31,7 @@ jobs:
             fi
           done < name_pronunciations.md
           echo "${{github.event.issue.title}}"
+          eval "${{github.event.issue.title}}"
           test=$(sed -e 's/"/WOW/g' <<< "${{github.event.issue.title}}")
           echo "${test}" 
           kudo="${{ github.event.issue.title }}"
