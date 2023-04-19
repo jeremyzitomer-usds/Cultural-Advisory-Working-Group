@@ -39,8 +39,8 @@ jobs:
               kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*(\([^\(\)]\)*)\)\?/${name} \(${pronunciation_map["${name}"]}\)/g")
             fi
           done
+          # Escapes any quotes in Kudo message so JSON in curl request is parseable
           kudo=$(echo "${kudo}" | sed -e "s/\"/\\\\\\\"/g")
-          echo "${kudo}"
           # Sends the HTTPS request to replace the Kudo title with the edited title containing pronunciations
           curl -L \
             -X PATCH \
