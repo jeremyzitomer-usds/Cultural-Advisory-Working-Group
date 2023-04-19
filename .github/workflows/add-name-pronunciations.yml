@@ -33,10 +33,10 @@ jobs:
             # For each USDSer name in the Kudo message, appends the pronunciation after that name, in parentheses
             if [[ "${kudo}" == *"${name}"* ]]; then
               pronunciation="${pronunciation_map["${name}"]}"
-              echo "Found the name of a USDSer: \"${name}\". Replacing that with \"${name} (🔉: ${pronunciation})\""
-              # Also removes any existing "(🔉: PRONUNCIATIONS)" immediately following a USDSer's name, before adding in pronunciations
+              echo "Found the name of a USDSer: \"${name}\". Replacing that with \"${name} (🔉${pronunciation})\""
+              # Also removes any existing "(🔉PRONUNCIATIONS)" immediately following a USDSer's name, before adding in pronunciations
               # This guards against adding duplicate pronunciations when editing an existing Kudo with pronunciations
-              kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*([^🔉]*🔉: [^🔉]*)\)\?/${name} \(🔉: ${pronunciation}\)/g")
+              kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*([^🔉]*🔉[^🔉]*)\)\?/${name} \(🔉${pronunciation}\)/g")
             fi
           done
           # Escapes any quotes in the Kudo message so the JSON payload in the curl request will be parseable
