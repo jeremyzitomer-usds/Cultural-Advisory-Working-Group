@@ -39,6 +39,7 @@ jobs:
               # Also removes any existing text in parentheses immediately following a USDSer's name, before adding in pronunciations
               # This guards against adding duplicate pronunciations when editing an existing Kudo with pronunciations; also handles
               # the edge case "Kudos to <NAME_1>, <NAME_2>, and <NAME_3> (<PRONUNCIATION_1>, <PRONUNCIATION_2>, <PRONUNCIATION_3>)"
+              echo "s/${name}\(\s*(${no_pron_pref}${pron_pref}${no_pron_pref})\)\?/${name} \(${pron_pref}${pron}\)/g"
               kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*(${no_pron_pref}${pron_pref}${no_pron_pref})\)\?/${name} \(${pron_pref}${pron}\)/g")
             fi
           done
