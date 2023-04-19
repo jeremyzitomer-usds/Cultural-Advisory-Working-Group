@@ -16,6 +16,8 @@ jobs:
       # Runs a bash script
       - shell: bash
         run: |
+          # Script to add name pronunciations
+          
           # Creates a map from USDS employee names to their pronunciations, using the content of name_pronunciations.md 
           declare -A pronunciation_map
           while read n; do
