@@ -29,18 +29,14 @@ jobs:
             fi
           done < name_pronunciations.md
           kudo='${{ github.event.issue.title }}'
-          pron_pref='🔉: '
-          no_pron_pref='[^🔉]*'
           for name in "${!pronunciation_map[@]}"; do 
             # For each USDSer name in the Kudo message, appends the pronunciation after that name, in parentheses
             if [[ "${kudo}" == *"${name}"* ]]; then
-              echo "Found the name of a USDSer: \"${name}\". Replacing that with \"${name} (${pronunciation_map["${name}"]})\""
-              pron="${pronunciation_map["${name}"]}"
-              # Also removes any existing text in parentheses immediately following a USDSer's name, before adding in pronunciations
-              # This guards against adding duplicate pronunciations when editing an existing Kudo with pronunciations; also handles
-              # the edge case "Kudos to <NAME_1>, <NAME_2>, and <NAME_3> (<PRONUNCIATION_1>, <PRONUNCIATION_2>, <PRONUNCIATION_3>)"
-              echo "s/${name}\(\s*([^🔉]*🔉: [^🔉]*)\)\?/${name} \(🔉: ${pron}\)/g"
-              kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*([^🔉]*🔉: [^🔉]*)\)\?/${name} \(🔉: ${pron}\)/g")
+              pronunciation="${pronunciation_map["${name}"]}"
+              echo "Found the name of a USDSer: \"${name}\". Replacing that with \"${name} (🔉: ${pronunciation})\""
+              # Also removes any existing "(🔉: PRONUNCIATIONS)" immediately following a USDSer's name, before adding in pronunciations
+              # This guards against adding duplicate pronunciations when editing an existing Kudo with pronunciations
+              kudo=$(echo "${kudo}" | sed -e "s/${name}\(\s*([^🔉]*🔉: [^🔉]*)\)\?/${name} \(🔉: ${pronunciation}\)/g")
             fi
           done
           # Escapes any quotes in the Kudo message so the JSON payload in the curl request will be parseable
